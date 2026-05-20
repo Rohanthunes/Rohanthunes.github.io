@@ -507,19 +507,155 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   RESPONSIVIDADE
+   RESPONSIVIDADE — três breakpoints + landscape especial
    ══════════════════════════════════════════════════════════════════ */
-@media (max-width: 600px) {
-    .eyebrow { gap: 8px; }
-    .ornamento-topo .linha-orn,
-    .ornamento-base .linha-orn { width: 20px; }
-    .escudo { width: 50px; }
-    .subtitulo { font-size: 0.95rem; }
+
+/* ── Tablet: 768px ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    .vinheta-conteudo {
+        padding: 24px 28px;
+        gap: clamp(10px, 2vh, 20px);
+    }
+
+    .eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        gap: 10px;
+    }
+    .eyebrow-linha { width: clamp(16px, 5vw, 50px); }
+
+    .titulo-linha { font-size: clamp(2.4rem, 10vw, 5.5rem); }
+
+    .titulo-separador {
+        font-size: clamp(0.75rem, 2vw, 1.1rem);
+        letter-spacing: 0.28em;
+    }
+
+    .subtitulo {
+        font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+        max-width: 90vw;
+        line-height: 1.6;
+    }
+
+    .divisor-perg { width: clamp(120px, 50vw, 240px); }
+
+    .btn-explorar {
+        padding: 13px 30px;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        gap: 10px;
+    }
+
+    .linha-orn { width: clamp(16px, 5vw, 60px); }
+    .diamante   { font-size: 7px; }
+
+    .escudo {
+        width: clamp(44px, 7vw, 72px);
+        bottom: 3vh;
+        right: 3vw;
+    }
+
+    .nevoa-blob { filter: blur(50px); }
 }
 
+/* ── Mobile: 480px ───────────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+    .vinheta-conteudo {
+        padding: 16px 20px;
+        gap: clamp(8px, 1.8vh, 16px);
+    }
+
+    .eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        gap: 6px;
+    }
+    .eyebrow-linha { width: 14px; }
+
+    .titulo-linha {
+        font-size: clamp(2rem, 13vw, 3.2rem);
+        letter-spacing: 0.03em;
+    }
+
+    .titulo-separador {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+    }
+
+    .subtitulo {
+        font-size: 0.85rem;
+        max-width: 92vw;
+        line-height: 1.55;
+    }
+
+    .divisor-perg { width: clamp(100px, 55vw, 180px); }
+
+    .btn-explorar {
+        padding: 14px 26px;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        gap: 8px;
+        width: clamp(200px, 80vw, 300px);
+        justify-content: center;
+    }
+
+    .ornamento-topo, .ornamento-base { display: none; }
+
+    .escudo {
+        width: 36px;
+        bottom: 2vh;
+        right: 2vw;
+        opacity: 0.4;
+    }
+
+    .nevoa-blob { filter: blur(35px); }
+
+    #canvas-particulas { opacity: 0.6; }
+
+    .vignette-overlay {
+        background: radial-gradient(
+            ellipse at 50% 50%,
+            transparent 30%,
+            rgba(0,0,0,0.4) 70%,
+            rgba(0,0,0,0.7) 100%
+        );
+    }
+}
+
+/* ── Mobile muito pequeno: 360px ─────────────────────────────────── */
+@media (max-width: 360px) {
+    .titulo-linha   { font-size: clamp(1.7rem, 14vw, 2.6rem); }
+    .subtitulo      { font-size: 0.78rem; }
+    .btn-explorar   { font-size: 0.72rem; padding: 12px 20px; }
+    .eyebrow        { display: none; }
+    .escudo         { display: none; }
+}
+
+/* ── Landscape em mobile (altura restrita) ───────────────────────── */
 @media (max-height: 500px) {
-    .vinheta-conteudo { gap: 8px; }
-    .subtitulo { display: none; }
+    .vinheta-conteudo {
+        gap: 6px;
+        padding: 10px 24px;
+    }
+    .eyebrow        { display: none; }
+    .subtitulo      { display: none; }
+    .divisor-perg   { display: none; }
+    .ornamento-topo,
+    .ornamento-base { display: none; }
+    .escudo         { display: none; }
+
+    .titulo-linha   { font-size: clamp(1.8rem, 8vw, 3.5rem); }
+    .btn-explorar   { padding: 10px 28px; font-size: 0.78rem; }
+    .nevoa-blob     { filter: blur(30px); }
+}
+
+/* ── Landscape + mobile pequeno ─────────────────────────────────── */
+@media (max-height: 400px) and (max-width: 768px) {
+    .titulo-separador { display: none; }
+    .titulo-linha     { font-size: clamp(1.5rem, 7vw, 2.8rem); }
+    .btn-explorar     { padding: 8px 22px; font-size: 0.72rem; }
 }
 
 /* ══════════════════════════════════════════════════════════════════
