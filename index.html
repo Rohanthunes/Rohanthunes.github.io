@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História da Europa — Abertura</title>
+
+    <!-- Tipografia histórica elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 0 — Fundo de mapa antigo (SVG inline)
+     ══════════════════════════════════════════════ -->
+<div class="bg-map" aria-hidden="true">
+    <!-- Grade de mapa estilo cartografia antiga -->
+    <svg class="map-grid" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <!-- Linhas de latitude -->
+        <g stroke="#c9a84c" stroke-opacity="0.18" stroke-width="0.8" fill="none">
+            <line x1="0" y1="100" x2="1200" y2="100"/>
+            <line x1="0" y1="200" x2="1200" y2="200"/>
+            <line x1="0" y1="300" x2="1200" y2="300"/>
+            <line x1="0" y1="400" x2="1200" y2="400"/>
+            <line x1="0" y1="500" x2="1200" y2="500"/>
+            <line x1="0" y1="600" x2="1200" y2="600"/>
+            <line x1="0" y1="700" x2="1200" y2="700"/>
+            <!-- Linhas de longitude -->
+            <line x1="150" y1="0" x2="150" y2="800"/>
+            <line x1="300" y1="0" x2="300" y2="800"/>
+            <line x1="450" y1="0" x2="450" y2="800"/>
+            <line x1="600" y1="0" x2="600" y2="800"/>
+            <line x1="750" y1="0" x2="750" y2="800"/>
+            <line x1="900" y1="0" x2="900" y2="800"/>
+            <line x1="1050" y1="0" x2="1050" y2="800"/>
+        </g>
+        <!-- Rosa dos ventos central -->
+        <g transform="translate(960, 160)" stroke="#c9a84c" stroke-opacity="0.35" fill="none">
+            <circle cx="0" cy="0" r="55" stroke-width="0.8"/>
+            <circle cx="0" cy="0" r="38" stroke-width="0.5"/>
+            <circle cx="0" cy="0" r="18" stroke-width="0.5"/>
+            <!-- Ponteiros cardinais -->
+            <polygon points="0,-55 6,-30 0,-20 -6,-30" fill="#c9a84c" fill-opacity="0.5" stroke="none"/>
+            <polygon points="0,55 6,30 0,20 -6,30"  fill="#c9a84c" fill-opacity="0.25" stroke="none"/>
+            <polygon points="-55,0 -30,6 -20,0 -30,-6" fill="#c9a84c" fill-opacity="0.25" stroke="none"/>
+            <polygon points="55,0 30,6 20,0 30,-6"  fill="#c9a84c" fill-opacity="0.25" stroke="none"/>
+            <!-- Ponteiros intercardinais -->
+            <line x1="0" y1="-55" x2="0" y2="55" stroke-width="0.6" stroke-opacity="0.2"/>
+            <line x1="-55" y1="0" x2="55" y2="0" stroke-width="0.6" stroke-opacity="0.2"/>
+            <line x1="-39" y1="-39" x2="39" y2="39" stroke-width="0.4" stroke-opacity="0.15"/>
+            <line x1="39" y1="-39" x2="-39" y2="39" stroke-width="0.4" stroke-opacity="0.15"/>
+            <!-- N -->
+            <text x="-5" y="-62" fill="#c9a84c" fill-opacity="0.7" font-family="Cinzel,serif" font-size="11" stroke="none">N</text>
+        </g>
+        <!-- Segunda rosa dos ventos — canto inferior esquerdo -->
+        <g transform="translate(180, 640)" stroke="#c9a84c" stroke-opacity="0.2" fill="none">
+            <circle cx="0" cy="0" r="35" stroke-width="0.6"/>
+            <circle cx="0" cy="0" r="22" stroke-width="0.4"/>
+            <polygon points="0,-35 4,-18 0,-12 -4,-18" fill="#c9a84c" fill-opacity="0.3" stroke="none"/>
+            <line x1="0" y1="-35" x2="0" y2="35" stroke-width="0.5" stroke-opacity="0.2"/>
+            <line x1="-35" y1="0" x2="35" y2="0" stroke-width="0.5" stroke-opacity="0.2"/>
+        </g>
+        <!-- Silhueta simplificada da Europa (contorno estilizado) -->
+        <path d="M320,80 Q380,60 440,90 Q500,70 560,100 Q620,80 680,110
+                 Q740,90 800,120 Q820,150 800,200 Q780,240 810,280
+                 Q840,320 820,370 Q790,420 750,450 Q700,480 660,510
+                 Q620,530 580,510 Q540,490 500,510 Q460,530 420,500
+                 Q380,470 350,440 Q310,410 290,370 Q270,330 280,280
+                 Q300,230 280,190 Q260,150 290,120 Z"
+              fill="#c9a84c" fill-opacity="0.05"
+              stroke="#c9a84c" stroke-opacity="0.2" stroke-width="1.2"/>
+        <!-- Cruzes ornamentais nos cruzamentos da grade -->
+        <g fill="#c9a84c" fill-opacity="0.15">
+            <rect x="148" y="98" width="4" height="4"/>
+            <rect x="298" y="98" width="4" height="4"/>
+            <rect x="448" y="198" width="4" height="4"/>
+            <rect x="748" y="298" width="4" height="4"/>
+            <rect x="898" y="498" width="4" height="4"/>
+            <rect x="1048" y="398" width="4" height="4"/>
+        </g>
+    </svg>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 1 — Partículas de ouro (canvas)
+     ══════════════════════════════════════════════ -->
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 2 — Fumaça / névoa ambiente
+     ══════════════════════════════════════════════ -->
+<div class="nevoa" aria-hidden="true">
+    <div class="nevoa-blob nevoa-1"></div>
+    <div class="nevoa-blob nevoa-2"></div>
+    <div class="nevoa-blob nevoa-3"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 3 — Elementos decorativos históricos
+     ══════════════════════════════════════════════ -->
+<div class="decorativos" aria-hidden="true">
+    <!-- Brasão / escudo estilizado (SVG inline) -->
+    <svg class="escudo" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,10 L110,10 L110,90 Q110,130 60,138 Q10,130 10,90 Z"
+              fill="none" stroke="#c9a84c" stroke-width="2" stroke-opacity="0.5"/>
+        <path d="M25,25 L95,25 L95,85 Q95,115 60,124 Q25,115 25,85 Z"
+              fill="none" stroke="#c9a84c" stroke-width="1" stroke-opacity="0.3"/>
+        <!-- Cruz central no escudo -->
+        <line x1="60" y1="30" x2="60" y2="120" stroke="#c9a84c" stroke-width="1.5" stroke-opacity="0.35"/>
+        <line x1="25" y1="65" x2="95" y2="65"  stroke="#c9a84c" stroke-width="1.5" stroke-opacity="0.35"/>
+        <!-- Flor-de-lis topo -->
+        <text x="45" y="58" font-size="22" fill="#c9a84c" fill-opacity="0.45" font-family="serif">⚜</text>
+    </svg>
+
+    <!-- Separador ornamental superior -->
+    <div class="ornamento-topo">
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+    </div>
+
+    <!-- Separador ornamental inferior -->
+    <div class="ornamento-base">
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+        <span class="diamante">◆</span>
+        <span class="linha-orn"></span>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 4 — Conteúdo principal da vinheta
+     ══════════════════════════════════════════════ -->
+<main class="vinheta-conteudo" role="main">
+
+    <!-- Eyebrow / rótulo -->
+    <p class="eyebrow" aria-label="Introdução">
+        <span class="eyebrow-linha"></span>
+        Anno Domini · Guia Histórico
+        <span class="eyebrow-linha"></span>
+    </p>
+
+    <!-- Título principal -->
+    <h1 class="titulo-principal">
+        <span class="titulo-linha titulo-linha-1">História</span>
+        <span class="titulo-separador">✦ &nbsp; da &nbsp; ✦</span>
+        <span class="titulo-linha titulo-linha-2">Europa</span>
+    </h1>
+
+    <!-- Subtítulo -->
+    <p class="subtitulo">
+        Uma jornada pelos impérios, guerras e renascimentos<br>
+        que moldaram o mundo como o conhecemos
+    </p>
+
+    <!-- Divisor de pergaminho -->
+    <div class="divisor-perg" aria-hidden="true">
+        <svg viewBox="0 0 300 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,10 Q30,2 60,10 Q90,18 120,10 Q150,2 180,10 Q210,18 240,10 Q270,2 300,10"
+                  fill="none" stroke="#c9a84c" stroke-width="1.2" stroke-opacity="0.7"/>
+            <circle cx="150" cy="10" r="4" fill="#c9a84c" fill-opacity="0.8"/>
+            <circle cx="60"  cy="10" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+            <circle cx="240" cy="10" r="2" fill="#c9a84c" fill-opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- Botão CTA -->
+    <a href="index2.html" class="btn-explorar" id="btn-explorar" aria-label="Explorar a história da Europa">
+        <span class="btn-brilho" aria-hidden="true"></span>
+        <span class="btn-texto">Explorar História</span>
+        <span class="btn-seta" aria-hidden="true">→</span>
+    </a>
+
+    <!-- Nota de áudio (opcional) -->
+    <p class="nota-audio" id="nota-audio" aria-live="polite"></p>
+
+</main>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 5 — Vignette / sobreposição de borda
+     ══════════════════════════════════════════════ -->
+<div class="vignette-overlay" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════
+     CAMADA 6 — Transição de saída (fade para index)
+     ══════════════════════════════════════════════ -->
+<div class="transicao-saida" id="transicao-saida" aria-hidden="true"></div>
+
+<!-- Áudio ambiente (discreto, opcional) -->
+<audio id="audio-ambiente" loop preload="none">
+    <!--
+        Para usar áudio real, adicione um arquivo .mp3 ou .ogg aqui:
+        <source src="assets/europa-ambient.mp3" type="audio/mpeg">
+        Sugestão: música de harpa medieval ou vento suave de 30-60s em loop.
+        Recomendamos volume <= 0.15 para não ser intrusivo.
+    -->
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

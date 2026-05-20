@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_4.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_4.png">
+    <title>História da Europa - Guia Completo</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div id="badge-pais"></div>
+    <div class="container">
+        <header>
+            <h1>🌍 História da Europa</h1>
+            <p>Um guia completo sobre o continente europeu e seus principais países</p>
+        </header>
+
+        <nav aria-label="Seções principais">
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="nav-lista">
+                <li><a href="#europa-geral">Europa Geral</a></li>
+                <li><a href="#alemanha">Alemanha</a></li>
+                <li><a href="#franca">França</a></li>
+                <li><a href="#reino-unido">Reino Unido</a></li>
+                <li><a href="#italia">Itália</a></li>
+                <li><a href="#espanha">Espanha</a></li>
+                <li><a href="#russia">Rússia</a></li>
+                <li><a href="#portugal">Portugal</a></li>
+            </ul>
+        </nav>
+
+        <!-- EUROPA GERAL -->
+        <section id="europa-geral" class="section">
+            <h2>🌍 Europa - Visão Geral</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="748000000"></span></p>
+                    <p><strong>Densidade:</strong> <span class="contador" data-valor="73" data-duracao="2500"></span> hab/km²</p>
+                    <p><strong>Países:</strong> <span class="contador" data-valor="50" data-duracao="3000"></span> Países</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> ~R$: <span class="contador" data-valor="24" data-duracao="3500"></span> bilhões</p>
+                    <p><strong>Moeda principal:</strong> Euro (€)</p>
+                    <p><strong>União Europeia:</strong> <span class="contador" data-valor="27" data-duracao="4000"></span> países</p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Línguas:</strong> <span class="contador" data-valor="200" data-duracao="4500"></span>+ idiomas</p>
+                    <p><strong>Patrimônios UNESCO:</strong> <span class="contador" data-valor="500" data-duracao="5000"></span>+</p>
+                    <p><strong>Diversidade cultural única</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> Democracias parlamentares</p>
+                    <p><strong>UE:</strong> União política e econômica</p>
+                    <p><strong>OTAN:</strong> Aliança militar</p>
+                </div>
+            </div>
+
+            <h3>📜 História Resumida</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Antiguidade Clássica (800 a.C. - 476 d.C.):</strong> Civilizações grega e romana estabeleceram as bases da cultura europeia, filosofia, democracia e direito.
+                </div>
+                <div class="timeline-item">
+                    <strong>Idade Média (476 - 1453):</strong> Feudalismo, expansão do Cristianismo, Cruzadas, desenvolvimento das monarquias nacionais e universidades.
+                </div>
+                <div class="timeline-item">
+                    <strong>Renascimento (séc. XIV-XVII):</strong> Ressurgimento cultural, científico e artístico. Grandes navegações iniciadas por Portugal e Espanha.
+                </div>
+                <div class="timeline-item">
+                    <strong>Era Moderna (séc. XVII-XVIII):</strong> Iluminismo, Revolução Científica, ascensão dos Estados-nação, colonialismo europeu.
+                </div>
+                <div class="timeline-item">
+                    <strong>Revolução Industrial (séc. XVIII-XIX):</strong> Transformação econômica e social, urbanização, imperialismo europeu global.
+                </div>
+                <div class="timeline-item">
+                    <strong>Século XX:</strong> Duas Guerras Mundiais, Guerra Fria, descolonização, criação da União Europeia (1993).
+                </div>
+                <div class="timeline-item">
+                    <strong>Século XXI:</strong> Integração europeia, desafios migratórios, Brexit (2020), questões climáticas e tecnológicas.
+                </div>
+            </div>
+
+            <h3>✝️ Religião</h3>
+            <ul class="lista-conteudo">
+                <li class="item-conteudo"><strong>Cristianismo:</strong> Religião predominante (70-75% da população)
+                        <ul>
+                            <li>Catolicismo: Sul e Oeste (Itália, Espanha, França, Portugal, Polônia)</li>
+                            <li>Protestantismo: Norte (Escandinávia, Alemanha, Reino Unido)</li>
+                            <li>Ortodoxia: Leste (Rússia, Grécia, Sérvia, Romênia)</li>
+                        </ul>
+                    </li>
+                <li class="item-conteudo"><strong>Islamismo:</strong> Segunda maior religião (~5%), concentrada em países balcânicos e comunidades imigrantes</li>
+                <li class="item-conteudo"><strong>Judaísmo:</strong> Comunidades históricas em vários países</li>
+                <li class="item-conteudo"><strong>Sem religião:</strong> Crescente secularização, especialmente no Norte e Oeste (15-20%)</li>
+            </ul>
+
+            <h3>🎭 Cultura</h3>
+            <p>A Europa é berço de movimentos culturais fundamentais:</p>
+            <ul class="lista-conteudo">
+                <li class="item-conteudo"><strong>Arte:</strong> Renascimento italiano, Impressionismo francês, Barroco, Arte Moderna</li>
+                <li class="item-conteudo"><strong>Literatura:</strong> Shakespeare, Cervantes, Goethe, Tolstói, Camões</li>
+                <li class="item-conteudo"><strong>Música:</strong> Música clássica (Bach, Mozart, Beethoven), ópera, música popular contemporânea</li>
+                <li class="item-conteudo"><strong>Filosofia:</strong> Sócrates, Platão, Descartes, Kant, Nietzsche</li>
+                <li class="item-conteudo"><strong>Ciência:</strong> Newton, Darwin, Einstein, Curie</li>
+                <li class="item-conteudo"><strong>Gastronomia:</strong> Tradições culinárias regionais ricas e diversificadas</li>
+            </ul>
+
+            <h3>💼 Economia</h3>
+            <ul class="lista-conteudo">
+                <li class="item-conteudo"><strong>Setores principais:</strong> Serviços (70%), indústria (25%), agricultura (5%)</li>
+                <li class="item-conteudo"><strong>Principais indústrias:</strong> Automotiva, farmacêutica, tecnologia, turismo, moda</li>
+                <li class="item-conteudo"><strong>Comércio:</strong> Maior bloco comercial do mundo (UE)</li>
+                <li class="item-conteudo"><strong>Inovação:</strong> Centros de pesquisa e desenvolvimento tecnológico</li>
+                <li class="item-conteudo"><strong>Bem-estar social:</strong> Sistemas robustos de saúde e educação pública</li>
+            </ul>
+        </section>
+
+        <!-- ALEMANHA -->
+        <section id="alemanha" class="section">
+            <h2>🇩🇪 Alemanha</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="84000000">0</span></p>
+                    <p><strong>Capital:</strong> Berlim (<span class="contador" data-valor="3" data-duracao="2500"></span></span>.<span class="contador" data-valor="7" data-duracao="2500">0</span>M)</p>
+                    <p><strong>Cidades:</strong> Hamburgo, Munique, Colônia</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $ <span class="contador" data-valor="4" data-duracao="3000"> 0</span>.<span class="contador" data-valor="3" data-duracao="3000"></span> trilhões</p>
+                    <p><strong>PIB per capita:</strong> R$ <span class="contador" data-valor="51000" data-duracao="3500"></span></p>
+                    <p><strong>Maior economia da Europa</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Alemão</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="51" data-duracao="4000"></span> sítios</p>
+                    <p><strong>Festivais:</strong> Oktoberfest</p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> República Federal</p>
+                    <p><strong>Governo:</strong> Parlamentarismo</p>
+                    <p><strong><span class="contador" data-valor="16" data-duracao="4500"></span> estados federados</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Sacro Império Romano-Germânico (962-1806):</strong> Fragmentação política em principados</li>
+                    <li class="item-historia"><strong>Unificação (1871):</strong> Otto von Bismarck unifica a Alemanha sob a Prússia</li>
+                    <li class="item-historia"><strong>Império Alemão (1871-1918):</strong> Rápida industrialização e expansão colonial</li>
+                    <li class="item-historia"><strong>República de Weimar (1919-1933):</strong> Democracia instável pós-Primeira Guerra</li>
+                    <li class="item-historia"><strong>Nazismo (1933-1945):</strong> Regime totalitário de Hitler, Segunda Guerra Mundial, Holocausto</li>
+                    <li class="item-historia"><strong>Divisão (1949-1990):</strong> Alemanha Ocidental (capitalista) e Oriental (comunista)</li>
+                    <li class="item-historia"><strong>Reunificação (1990):</strong> Queda do Muro de Berlim e unificação alemã</li>
+                    <li class="item-historia"><strong>Alemanha moderna:</strong> Líder da União Europeia, potência econômica global</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Indústria automotiva:</strong> Volkswagen, BMW, Mercedes-Benz, Porsche</li>
+                    <li class="item-conteudo"><strong>Engenharia:</strong> Siemens, Bosch, líder mundial em tecnologia</li>
+                    <li class="item-conteudo"><strong>Exportações:</strong> Terceiro maior exportador mundial</li>
+                    <li class="item-conteudo"><strong>Energia renovável:</strong> Líder em transição energética (Energiewende)</li>
+                    <li class="item-conteudo"><strong>Modelo econômico:</strong> Economia social de mercado</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Cristianismo:</strong> 52% (dividido entre católicos e protestantes)</li>
+                    <li class="item-conteudo"><strong>Islamismo:</strong> 5% (comunidade turca)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 42% (em crescimento)</li>
+                    <li class="item-conteudo"><strong>Reforma Protestante:</strong> Iniciada por Martinho Lutero (1517)</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Filosofia:</strong> Kant, Hegel, Nietzsche, Marx</li>
+                    <li class="item-conteudo"><strong>Música clássica:</strong> Bach, Beethoven, Brahms, Wagner</li>
+                    <li class="item-conteudo"><strong>Literatura:</strong> Goethe, Schiller, Thomas Mann</li>
+                    <li class="item-conteudo"><strong>Arquitetura:</strong> Bauhaus, castelos medievais</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Expressionismo alemão, Novo Cinema Alemão</li>
+                    <li class="item-conteudo"><strong>Tradições:</strong> Mercados de Natal, cervejarias, precisão e eficiência</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FRANÇA -->
+        <section id="franca" class="section">
+            <h2>🇫🇷 França</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="68000000">0</span></p>
+                    <p><strong>Capital:</strong> Paris (<span class="contador" data-valor="2" data-duracao="2500">0</span>.<span class="contador" data-valor="2" data-duracao="2500">0</span>M,<span class="contador" data-valor="1" data-duracao="3000">0</span>.<span class="contador" data-valor="2" data-duracao="3000">0</span>M metro)</p>
+                    <p><strong>Cidades:</strong> Lyon, Marselha, Toulouse</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="3" data-duracao="3500">0</span>.0 trilhões</p>
+                    <p><strong>PIB per capita:</strong> $<span class="contador" data-valor="44000" data-duracao="4000"></span></p>
+                    <p><strong>7ª maior economia mundial</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Francês</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="49" data-duracao="4500">0</span> sítios</p>
+                    <p><strong>País mais visitado do mundo</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> República Semi-Presidencialista</p>
+                    <p><strong>5ª República (desde 1958)</strong></p>
+                    <p><strong>Membro permanente ONU</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Reino Franco (481-843):</strong> Carlos Magno e o Império Carolíngio</li>
+                    <li class="item-historia"><strong>Idade Média:</strong> Dinastias Capetíngias, Guerra dos Cem Anos contra Inglaterra</li>
+                    <li class="item-historia"><strong>Absolutismo (séc. XVI-XVIII):</strong> Luís XIV, o "Rei Sol", Palácio de Versalhes</li>
+                    <li class="item-historia"><strong>Revolução Francesa (1789):</strong> Queda da monarquia, Declaração dos Direitos do Homem</li>
+                    <li class="item-historia"><strong>Napoleão Bonaparte (1799-1815):</strong> Império napoleônico, expansão europeia</li>
+                    <li class="item-historia"><strong>Terceira República (1870-1940):</strong> Industrialização, colonialismo</li>
+                    <li class="item-historia"><strong>Guerras Mundiais:</strong> Devastação, ocupação nazista (1940-1944)</li>
+                    <li class="item-historia"><strong>Descolonização (1954-1962):</strong> Independência da Indochina e Argélia</li>
+                    <li class="item-historia"><strong>França moderna:</strong> Cofundadora da UE, potência nuclear</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Setores fortes:</strong> Aeroespacial (Airbus), nuclear, luxo (LVMH, L'Oréal)</li>
+                    <li class="item-conteudo"><strong>Agricultura:</strong> Maior produtor agrícola da UE (vinho, queijo, trigo)</li>
+                    <li class="item-conteudo"><strong>Turismo:</strong> 90 milhões de visitantes/ano (Torre Eiffel, Louvre)</li>
+                    <li class="item-conteudo"><strong>Tecnologia:</strong> Estação espacial, TGV (trem de alta velocidade)</li>
+                    <li class="item-conteudo"><strong>Modelo econômico:</strong> Economia mista com forte setor público</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Catolicismo:</strong> 48% (herança histórica profunda)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 40% (laicidade forte desde 1905)</li>
+                    <li class="item-conteudo"><strong>Islamismo:</strong> 8% (maior comunidade muçulmana da Europa)</li>
+                    <li class="item-conteudo"><strong>Protestantismo e Judaísmo:</strong> Minorias significativas</li>
+                    <li class="item-conteudo"><strong>Laicidade (Laïcité):</strong> Separação estrita Estado-Igreja</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Artes:</strong> Impressionismo (Monet, Renoir), vanguardas artísticas</li>
+                    <li class="item-conteudo"><strong>Literatura:</strong> Victor Hugo, Molière, Voltaire, Sartre, Camus</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Nouvelle Vague, Festival de Cannes</li>
+                    <li class="item-conteudo"><strong>Moda:</strong> Capital mundial (Chanel, Dior, Yves Saint Laurent)</li>
+                    <li class="item-conteudo"><strong>Gastronomia:</strong> Patrimônio cultural UNESCO, vinhos renomados</li>
+                    <li class="item-conteudo"><strong>Filosofia:</strong> Iluminismo (Rousseau, Montesquieu), existencialismo</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- REINO UNIDO -->
+        <section id="reino-unido" class="section">
+            <h2>🇬🇧 Reino Unido</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="68000000">0</span></p>
+                    <p><strong>Capital:</strong> Londres (<span class="contador" data-valor="9" data-duracao="2500">0</span>M)</p>
+                    <p><strong>4 nações:</strong> Inglaterra, Escócia, País de Gales, Irlanda do Norte</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="3" data-duracao="3000">0</span>.<span class="contador" data-valor="1" data-duracao="3000">0</span> trilhões</p>
+                    <p><strong>PIB per capita:</strong> $<span class="contador" data-valor="46000" data-duracao="3500">0</span></p>
+                    <p><strong>Centro financeiro global</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Inglês</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="33" data-duracao="4000">0</span> sítios</p>
+                    <p><strong>Influência global massiva</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> Monarquia Parlamentar</p>
+                    <p><strong>Rainha/Rei:</strong> Chefe de Estado</p>
+                    <p><strong>Brexit:</strong> Saída da UE (2020)</p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Era Medieval:</strong> Conquista Normanda (1066), Magna Carta (1215)</li>
+                    <li class="item-historia"><strong>Dinastia Tudor (1485-1603):</strong> Henrique VIII, Reforma Anglicana, Elizabeth I</li>
+                    <li class="item-historia"><strong>Império Britânico (séc. XVII-XX):</strong> Maior império da história (1/4 do mundo)</li>
+                    <li class="item-historia"><strong>Revolução Industrial (séc. XVIII):</strong> Berço da industrialização moderna</li>
+                    <li class="item-historia"><strong>Era Vitoriana (1837-1901):</strong> Apogeu do poder britânico</li>
+                    <li class="item-historia"><strong>Guerras Mundiais:</strong> Vitórias custosas, declínio imperial</li>
+                    <li class="item-historia"><strong>Descolonização (1947-1997):</strong> Independência da Índia, fim do império</li>
+                    <li class="item-historia"><strong>Pós-guerra:</strong> Estado de bem-estar social, entrada na UE (1973)</li>
+                    <li class="item-historia"><strong>Brexit (2016-2020):</strong> Referendo e saída da União Europeia</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Serviços financeiros:</strong> City de Londres, centro financeiro mundial</li>
+                    <li class="item-conteudo"><strong>Indústrias criativas:</strong> Música, cinema, teatro, publicidade</li>
+                    <li class="item-conteudo"><strong>Tecnologia:</strong> Fintech, startups em crescimento</li>
+                    <li class="item-conteudo"><strong>Farmacêutica:</strong> AstraZeneca, GlaxoSmithKline</li>
+                    <li class="item-conteudo"><strong>Energia:</strong> Mar do Norte (petróleo e gás), eólica offshore</li>
+                    <li class="item-conteudo"><strong>Educação:</strong> Oxford, Cambridge, universidades de prestígio</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Anglicanismo:</strong> Igreja da Inglaterra (religião oficial), 14%</li>
+                    <li class="item-conteudo"><strong>Catolicismo:</strong> 9% (forte na Irlanda do Norte)</li>
+                    <li class="item-conteudo"><strong>Islamismo:</strong> 6% (comunidades do Paquistão, Bangladesh)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 52% (maioria da população)</li>
+                    <li class="item-conteudo"><strong>Outras cristãs:</strong> Presbiterianos, Metodistas</li>
+                    <li class="item-conteudo"><strong>Multiculturalismo religioso:</strong> Hinduísmo, Sikhismo, Judaísmo</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Literatura:</strong> Shakespeare, Dickens, Jane Austen, J.K. Rowling</li>
+                    <li class="item-conteudo"><strong>Música:</strong> The Beatles, Rolling Stones, influência global no rock</li>
+                    <li class="item-conteudo"><strong>Teatro:</strong> West End londrino, tradição teatral rica</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> James Bond, Harry Potter, indústria cinematográfica</li>
+                    <li class="item-conteudo"><strong>Esportes:</strong> Futebol (Premier League), críquete, rugby, tênis</li>
+                    <li class="item-conteudo"><strong>Tradições:</strong> Chá das 5, monarquia, humor britânico</li>
+                    <li class="item-conteudo"><strong>Ciência:</strong> Newton, Darwin, Hawking</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ITÁLIA -->
+        <section id="italia" class="section">
+            <h2>🇮🇹 Itália</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="59000000">0</span></p>
+                    <p><strong>Capital:</strong> Roma (<span class="contador" data-valor="2" data-duracao="2500">0</span>.<span class="contador" data-valor="8" data-duracao="2500">0</span>M)</p>
+                    <p><strong>Cidades:</strong> Milão, Nápoles, Florença, Veneza</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="2" data-duracao="3000">0</span>.<span class="contador" data-valor="2" data-duracao="3000">0</span> trilhões</p>
+                    <p><strong>PIB per capita:</strong> $<span class="contador" data-valor="37000" data-duracao="3500">0</span></p>
+                    <p><strong>8ª maior economia mundial</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Italiano</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="58" data-duracao="4000">0</span> sítios (maior do mundo)</p>
+                    <p><strong>Berço do Renascimento</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> República Parlamentar</p>
+                    <p><strong>20 regiões</strong></p>
+                    <p><strong>Membro fundador da UE</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Roma Antiga (753 a.C.-476 d.C.):</strong> Império Romano, civilização clássica</li>
+                    <li class="item-historia"><strong>Idade Média:</strong> Estados Papais, Repúblicas Marítimas (Veneza, Gênova)</li>
+                    <li class="item-historia"><strong>Renascimento (séc. XIV-XVI):</strong> Florença, Veneza, Roma - explosão cultural</li>
+                    <li class="item-historia"><strong>Fragmentação:</strong> Dividida em cidades-estado e reinos</li>
+                    <li class="item-historia"><strong>Unificação (Risorgimento, 1861):</strong> Garibaldi, Casa de Saboia</li>
+                    <li class="item-historia"><strong>Fascismo (1922-1943):</strong> Benito Mussolini, aliança com Hitler</li>
+                    <li class="item-historia"><strong>Segunda Guerra:</strong> Derrota, queda do fascismo</li>
+                    <li class="item-historia"><strong>República (1946-presente):</strong> Democracia, milagre econômico pós-guerra</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Moda e luxo:</strong> Armani, Versace, Prada, Gucci, Ferrari</li>
+                    <li class="item-conteudo"><strong>Design:</strong> Móveis, arquitetura, design industrial</li>
+                    <li class="item-conteudo"><strong>Automotiva:</strong> Ferrari, Lamborghini, Fiat</li>
+                    <li class="item-conteudo"><strong>Turismo:</strong> 65 milhões de visitantes/ano (Coliseu, Vaticano)</li>
+                    <li class="item-conteudo"><strong>Gastronomia:</strong> Exportação de alimentos (massas, vinhos, azeite)</li>
+                    <li class="item-conteudo"><strong>Pequenas e médias empresas:</strong> Espinha dorsal da economia</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Catolicismo:</strong> 80% (centro da Igreja Católica - Vaticano)</li>
+                    <li class="item-conteudo"><strong>Vaticano:</strong> Estado independente dentro de Roma, residência do Papa</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 15% (em crescimento)</li>
+                    <li class="item-conteudo"><strong>Islamismo e outras:</strong> 5% (imigrantes)</li>
+                    <li class="item-conteudo"><strong>Influência católica:</strong> Profunda na cultura, arte, arquitetura</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Artes:</strong> Leonardo da Vinci, Michelangelo, Rafael, Caravaggio</li>
+                    <li class="item-conteudo"><strong>Literatura:</strong> Dante Alighieri ("Divina Comédia"), Petrarca, Boccaccio</li>
+                    <li class="item-conteudo"><strong>Música:</strong> Ópera (Verdi, Puccini), bel canto</li>
+                    <li class="item-conteudo"><strong>Arquitetura:</strong> Romana, renascentista, barroca</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Neorrealismo italiano, Fellini, Rossellini</li>
+                    <li class="item-conteudo"><strong>Gastronomia:</strong> Pizza, pasta, gelato - patrimônio imaterial UNESCO</li>
+                    <li class="item-conteudo"><strong>Estilo de vida:</strong> "La dolce vita", valorização da família e comunidade</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ESPANHA -->
+        <section id="espanha" class="section">
+            <h2>🇪🇸 Espanha</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="48000000">0</span></p>
+                    <p><strong>Capital:</strong> Madri (<span class="contador" data-valor="3" data-duracao="2500">0</span>.<span class="contador" data-valor="3" data-duracao="2500">0</span>M)</p>
+                    <p><strong>Cidades:</strong> Barcelona, Valência, Sevilha</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="1" data-duracao="3000">0</span>.<span class="contador" data-valor="6" data-duracao="3000">0</span> trilhões</p>
+                    <p><strong>PIB per capita:</strong> $<span class="contador" data-valor="33000" data-duracao="3500">0</span></p>
+                    <p><strong>14ª maior economia mundial</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Espanhol (Castelhano)</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="49" data-duracao="4000">0</span> sítios</p>
+                    <p><strong>Diversidade regional forte</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> Monarquia Parlamentar</p>
+                    <p><strong>17 comunidades autônomas</strong></p>
+                    <p><strong>Democracia desde 1978</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Hispânia Romana:</strong> Integração ao Império Romano</li>
+                    <li class="item-historia"><strong>Al-Andalus (711-1492):</strong> Domínio mouro, rica cultura islâmica</li>
+                    <li class="item-historia"><strong>Reconquista (722-1492):</strong> Reinos cristãos recuperam território</li>
+                    <li class="item-historia"><strong>Império Espanhol (séc. XV-XIX):</strong> Descobrimento da América (1492), maior império global</li>
+                    <li class="item-historia"><strong>Século de Ouro (séc. XVI-XVII):</strong> Apogeu cultural e político</li>
+                    <li class="item-historia"><strong>Declínio imperial (séc. XVIII-XIX):</strong> Guerras napoleônicas, independências americanas</li>
+                    <li class="item-historia"><strong>Guerra Civil (1936-1939):</strong> Conflito entre republicanos e nacionalistas</li>
+                    <li class="item-historia"><strong>Franquismo (1939-1975):</strong> Ditadura de Francisco Franco</li>
+                    <li class="item-historia"><strong>Transição democrática (1975-1982):</strong> Retorno à democracia, monarquia constitucional</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Turismo:</strong> 2º país mais visitado (84M/ano) - praias, cultura, gastronomia</li>
+                    <li class="item-conteudo"><strong>Agricultura:</strong> Azeite, vinhos, frutas cítricas</li>
+                    <li class="item-conteudo"><strong>Automotiva:</strong> SEAT, fábricas de montadoras europeias</li>
+                    <li class="item-conteudo"><strong>Energia renovável:</strong> Líder em energia solar e eólica</li>
+                    <li class="item-conteudo"><strong>Construção:</strong> Infraestrutura, AVE (trem de alta velocidade)</li>
+                    <li class="item-conteudo"><strong>Moda:</strong> Zara, Mango (fast fashion)</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Catolicismo:</strong> 58% (histórica influência católica)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 37% (secularização crescente)</li>
+                    <li class="item-conteudo"><strong>Islamismo:</strong> 4% (herança histórica e imigração)</li>
+                    <li class="item-conteudo"><strong>Inquisição Espanhola:</strong> Legado histórico (1478-1834)</li>
+                    <li class="item-conteudo"><strong>Caminho de Santiago:</strong> Importante rota de peregrinação</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Literatura:</strong> Cervantes ("Dom Quixote"), Lorca, Unamuno</li>
+                    <li class="item-conteudo"><strong>Artes:</strong> Velázquez, Goya, Picasso, Dalí, Miró</li>
+                    <li class="item-conteudo"><strong>Arquitetura:</strong> Gaudí (Sagrada Família), arquitetura mourisca (Alhambra)</li>
+                    <li class="item-conteudo"><strong>Música:</strong> Flamenco, guitarra espanhola</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Almodóvar, Buñuel</li>
+                    <li class="item-conteudo"><strong>Gastronomia:</strong> Tapas, paella, jamón ibérico, vinhos</li>
+                    <li class="item-conteudo"><strong>Festas:</strong> La Tomatina, San Fermín, Semana Santa</li>
+                    <li class="item-conteudo"><strong>Diversidade regional:</strong> Catalunha, Galícia, País Basco - identidades fortes</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- RÚSSIA -->
+        <section id="russia" class="section">
+            <h2>🇷🇺 Rússia</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="144000000">0</span></p>
+                    <p><strong>Capital:</strong> Moscou (<span class="contador" data-valor="13" data-duracao="2500">0</span>M)</p>
+                    <p><strong>Maior país do mundo</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="2" data-duracao="3000">0</span>.<span class="contador" data-valor="2" data-duracao="3000">0</span> trilhões</p>
+                    <p><strong>Recursos naturais:</strong> Petróleo, gás</p>
+                    <p><strong>11ª maior economia</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Russo</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="31" data-duracao="3500">0</span> sítios</p>
+                    <p><strong>Rica tradição cultural</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> República Federal Semi-Presidencialista</p>
+                    <p><strong><span class="contador" data-valor="85" data-duracao="4000">0</span> sujeitos federais</strong></p>
+                    <p><strong>Membro permanente ONU</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Rus de Kiev (882-1240):</strong> Estado eslavo oriental, cristianização (988)</li>
+                    <li class="item-historia"><strong>Jugo Mongol (1240-1480):</strong> Invasão e domínio dos tártaros</li>
+                    <li class="item-historia"><strong>Grão-Ducado de Moscou:</strong> Expansão russa, libertação do jugo</li>
+                    <li class="item-historia"><strong>Império Russo (1721-1917):</strong> Pedro, o Grande; Catarina, a Grande; expansão territorial</li>
+                    <li class="item-historia"><strong>Século XIX:</strong> Guerras napoleônicas, abolição da servidão (1861)</li>
+                    <li class="item-historia"><strong>Revolução Russa (1917):</strong> Queda do czarismo, Revolução Bolchevique</li>
+                    <li class="item-historia"><strong>União Soviética (1922-1991):</strong> Comunismo, Stalin, industrialização forçada</li>
+                    <li class="item-historia"><strong>Segunda Guerra Mundial:</strong> 27 milhões de mortos, vitória sobre nazismo</li>
+                    <li class="item-historia"><strong>Guerra Fria (1947-1991):</strong> Superpotência rival dos EUA</li>
+                    <li class="item-historia"><strong>Colapso soviético (1991):</strong> Dissolução da URSS, transição caótica</li>
+                    <li class="item-historia"><strong>Rússia moderna:</strong> Putin, ressurgimento como potência regional</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Recursos naturais:</strong> Maior exportador de gás natural, 3º de petróleo</li>
+                    <li class="item-conteudo"><strong>Mineração:</strong> Ouro, diamantes, metais raros</li>
+                    <li class="item-conteudo"><strong>Armamentos:</strong> 2º maior exportador mundial</li>
+                    <li class="item-conteudo"><strong>Energia nuclear:</strong> Tecnologia e construção de reatores</li>
+                    <li class="item-conteudo"><strong>Aeroespacial:</strong> Programas espaciais (Roscosmos)</li>
+                    <li class="item-conteudo"><strong>Agricultura:</strong> Maior exportador de trigo</li>
+                    <li class="item-conteudo"><strong>Desafios:</strong> Sanções internacionais, dependência de recursos</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Ortodoxia Russa:</strong> 71% (religião nacional histórica)</li>
+                    <li class="item-conteudo"><strong>Islamismo:</strong> 10% (Tártaros, caucasianos)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 15%</li>
+                    <li class="item-conteudo"><strong>Outras cristãs:</strong> Católicos, Protestantes (minorias)</li>
+                    <li class="item-conteudo"><strong>Igreja e Estado:</strong> Aproximação entre Igreja Ortodoxa e governo Putin</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Literatura:</strong> Dostoiévski, Tolstói, Tchékhov, Pushkin, Gogol</li>
+                    <li class="item-conteudo"><strong>Música clássica:</strong> Tchaikovsky, Rachmaninoff, Shostakovich</li>
+                    <li class="item-conteudo"><strong>Ballet:</strong> Bolshoi, Mariinsky - tradição mundial</li>
+                    <li class="item-conteudo"><strong>Artes:</strong> Kandinsky, Chagall, ícones religiosos</li>
+                    <li class="item-conteudo"><strong>Arquitetura:</strong> Catedrais ortodoxas, Kremlin, construtivismo soviético</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Eisenstein, Tarkovsky</li>
+                    <li class="item-conteudo"><strong>Ciência:</strong> Mendeleev, Pavlov, programa espacial pioneiro</li>
+                    <li class="item-conteudo"><strong>Tradições:</strong> Matrioshkas, vodka, literatura como identidade</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PORTUGAL -->
+        <section id="portugal" class="section">
+            <h2>🇵🇹 Portugal</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📊 População</h4>
+                    <p><strong>Total:</strong> ~<span class="contador" data-valor="10300000">0</span></p>
+                    <p><strong>Capital:</strong> Lisboa (<span class="contador" data-valor="550" data-duracao="2500">0</span>K)</p>
+                    <p><strong>Cidades:</strong> Porto, Braga, Coimbra</p>
+                </div>
+                <div class="info-card">
+                    <h4>💰 Economia</h4>
+                    <p><strong>PIB:</strong> $<span class="contador" data-valor="280" data-duracao="3000">0</span> bilhões</p>
+                    <p><strong>PIB per capita:</strong> $<span class="contador" data-valor="27000" data-duracao="3500">0</span></p>
+                    <p><strong>Turismo em crescimento</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>🎨 Cultura</h4>
+                    <p><strong>Língua:</strong> Português</p>
+                    <p><strong>UNESCO:</strong> <span class="contador" data-valor="17" data-duracao="4000">0</span> sítios</p>
+                    <p><strong>Azulejos, Fado</strong></p>
+                </div>
+                <div class="info-card">
+                    <h4>⚖️ Política</h4>
+                    <p><strong>Sistema:</strong> República Parlamentar</p>
+                    <p><strong>Democracia desde 1974</strong></p>
+                    <p><strong>Membro fundador NATO</strong></p>
+                </div>
+            </div>
+
+            <div class="country-card">
+                <h3>📜 História</h3>
+                <ul class="timeline-historia">
+                    <li class="item-historia"><strong>Condado Portucalense (1096):</strong> Origem de Portugal</li>
+                    <li class="item-historia"><strong>Independência (1143):</strong> D. Afonso Henriques, primeiro rei</li>
+                    <li class="item-historia"><strong>Reconquista (até 1249):</strong> Expulsão dos mouros, fronteiras definidas</li>
+                    <li class="item-historia"><strong>Era dos Descobrimentos (séc. XV-XVI):</strong> Navegações, império ultramarino</li>
+                    <li class="item-historia"><strong>Infante D. Henrique:</strong> Escola de Sagres, exploração africana</li>
+                    <li class="item-historia"><strong>Vasco da Gama (1498):</strong> Rota marítima para a Índia</li>
+                    <li class="item-historia"><strong>Império Colonial:</strong> Brasil, África (Angola, Moçambique), Goa, Macau</li>
+                    <li class="item-historia"><strong>União Ibérica (1580-1640):</strong> Domínio espanhol temporário</li>
+                    <li class="item-historia"><strong>Terramoto de Lisboa (1755):</strong> Destruição e reconstrução</li>
+                    <li class="item-historia"><strong>Estado Novo (1933-1974):</strong> Ditadura de Salazar</li>
+                    <li class="item-historia"><strong>Revolução dos Cravos (1974):</strong> Democracia, descolonização</li>
+                    <li class="item-historia"><strong>Integração europeia (1986):</strong> Adesão à CEE (atual UE)</li>
+                </ul>
+
+                <h3>💼 Economia</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Turismo:</strong> 27 milhões visitantes/ano, setor chave</li>
+                    <li class="item-conteudo"><strong>Vinho do Porto:</strong> Exportação tradicional reconhecida</li>
+                    <li class="item-conteudo"><strong>Cortiça:</strong> 50% da produção mundial</li>
+                    <li class="item-conteudo"><strong>Têxteis:</strong> Indústria tradicional em modernização</li>
+                    <li class="item-conteudo"><strong>Energia renovável:</strong> 60% da eletricidade (eólica, hidrelétrica, solar)</li>
+                    <li class="item-conteudo"><strong>Tecnologia:</strong> Startups em crescimento, Web Summit em Lisboa</li>
+                    <li class="item-conteudo"><strong>Agricultura:</strong> Azeite, vinhos, frutas</li>
+                </ul>
+
+                <h3>✝️ Religião</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Catolicismo:</strong> 84% (profundamente enraizado)</li>
+                    <li class="item-conteudo"><strong>Fátima:</strong> Um dos maiores santuários católicos (aparições de 1917)</li>
+                    <li class="item-conteudo"><strong>Sem religião:</strong> 11% (em crescimento entre jovens)</li>
+                    <li class="item-conteudo"><strong>Outras religiões:</strong> 5% (protestantismo, islamismo)</li>
+                    <li class="item-conteudo"><strong>Tradições:</strong> Festas religiosas, procissões, romarias</li>
+                </ul>
+
+                <h3>🎭 Cultura</h3>
+                <ul class="lista-conteudo">
+                    <li class="item-conteudo"><strong>Literatura:</strong> Luís de Camões ("Os Lusíadas"), Fernando Pessoa, José Saramago (Nobel)</li>
+                    <li class="item-conteudo"><strong>Fado:</strong> Música tradicional, patrimônio imaterial UNESCO</li>
+                    <li class="item-conteudo"><strong>Azulejos:</strong> Arte cerâmica decorativa característica</li>
+                    <li class="item-conteudo"><strong>Arquitetura:</strong> Manuelino, mosteiros (Jerónimos, Batalha)</li>
+                    <li class="item-conteudo"><strong>Cinema:</strong> Manoel de Oliveira, cinema contemporâneo premiado</li>
+                    <li class="item-conteudo"><strong>Gastronomia:</strong> Bacalhau, pastéis de nata, vinhos do Douro e Alentejo</li>
+                    <li class="item-conteudo"><strong>Futebol:</strong> Paixão nacional, Cristiano Ronaldo</li>
+                    <li class="item-conteudo"><strong>Saudade:</strong> Conceito cultural único de nostalgia melancólica</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 História da Europa - Guia Educacional Completo</p>
+            <p>Informações baseadas em dados históricos e estatísticas recentes</p>
+        </footer>
+    </div>
+
+    <button id="btn-topo" aria-label="Voltar ao topo">↑</button>
+    <script src="script2.js"></script>
+</body>
+</html>

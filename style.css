@@ -1,0 +1,538 @@
+/* ═══════════════════════════════════════════════════════════════════
+   VINHETA — História da Europa
+   Paleta: escuro profundo · dourado · marrom antigo · vermelho imperial
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Variáveis ───────────────────────────────────────────────────── */
+:root {
+    --ouro:          #c9a84c;
+    --ouro-claro:    #e8c96a;
+    --ouro-escuro:   #8a6b2a;
+    --fundo-1:       #0d0a05;
+    --fundo-2:       #1a1008;
+    --fundo-3:       #261608;
+    --vermelho:      #8b1a1a;
+    --vermelho-vivo: #c0392b;
+    --marrom:        #4a2c0a;
+    --creme:         #f5e6c8;
+    --creme-suave:   #e8d5a8;
+    --branco-antigo: #fdf6e3;
+    --sombra-ouro:   rgba(201,168,76,0.35);
+    --dur-entrada:   1.2s;
+}
+
+/* ── Reset ───────────────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; /* sem scroll durante a vinheta */
+}
+
+body {
+    font-family: 'EB Garamond', 'Georgia', serif;
+    background: var(--fundo-1);
+    color: var(--creme);
+    cursor: default;
+    /* Animação de fade-in do body inteiro */
+    animation: fadeInBody 2s ease forwards;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 0 — Fundo: mapa antigo
+   ══════════════════════════════════════════════════════════════════ */
+.bg-map {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    /* Textura de pergaminho via gradiente */
+    background:
+        radial-gradient(ellipse at 30% 20%, #2a1a08 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 80%, #1e0f04 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, #261608 0%, var(--fundo-1) 80%);
+    /* Grão/ruído simulado com micro-padrão */
+    background-color: var(--fundo-1);
+}
+
+/* Sobreposição de textura granulada (pseudo-noise via SVG filter) */
+.bg-map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+}
+
+/* Raio de luz diagonal — efeito épico de iluminação */
+.bg-map::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 70%;
+    height: 120%;
+    background: linear-gradient(
+        125deg,
+        transparent 30%,
+        rgba(201,168,76,0.04) 50%,
+        rgba(201,168,76,0.08) 55%,
+        rgba(201,168,76,0.03) 60%,
+        transparent 70%
+    );
+    transform: rotate(-15deg);
+    animation: raioDeLuz 8s ease-in-out infinite alternate;
+}
+
+@keyframes raioDeLuz {
+    0%   { opacity: 0.4; transform: rotate(-15deg) translateX(-5%); }
+    100% { opacity: 1;   transform: rotate(-15deg) translateX(5%);  }
+}
+
+.map-grid {
+    width: 100%;
+    height: 100%;
+    animation: gridPulse 12s ease-in-out infinite alternate;
+}
+
+@keyframes gridPulse {
+    0%   { opacity: 0.7; }
+    100% { opacity: 1;   }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 1 — Canvas de partículas (controlado via JS)
+   ══════════════════════════════════════════════════════════════════ */
+#canvas-particulas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 2 — Névoa / fumaça ambiente
+   ══════════════════════════════════════════════════════════════════ */
+.nevoa {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.nevoa-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    mix-blend-mode: screen;
+}
+
+.nevoa-1 {
+    width: 60vw; height: 50vh;
+    background: radial-gradient(ellipse, rgba(139,26,26,0.12) 0%, transparent 70%);
+    top: -10%; left: -5%;
+    animation: nevoaDrift1 18s ease-in-out infinite alternate;
+}
+
+.nevoa-2 {
+    width: 55vw; height: 45vh;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+    bottom: -5%; right: -5%;
+    animation: nevoaDrift2 22s ease-in-out infinite alternate;
+}
+
+.nevoa-3 {
+    width: 45vw; height: 40vh;
+    background: radial-gradient(ellipse, rgba(74,44,10,0.15) 0%, transparent 70%);
+    top: 30%; left: 30%;
+    animation: nevoaDrift3 15s ease-in-out infinite alternate;
+}
+
+@keyframes nevoaDrift1 {
+    0%   { transform: translate(0, 0) scale(1);    opacity: 0.6; }
+    100% { transform: translate(8%, 12%) scale(1.1); opacity: 1; }
+}
+@keyframes nevoaDrift2 {
+    0%   { transform: translate(0, 0) scale(1.1);  opacity: 1; }
+    100% { transform: translate(-10%, -8%) scale(1); opacity: 0.7; }
+}
+@keyframes nevoaDrift3 {
+    0%   { transform: translate(0, 0) scale(1);    opacity: 0.5; }
+    100% { transform: translate(5%, -10%) scale(1.15); opacity: 0.9; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 3 — Decorativos históricos
+   ══════════════════════════════════════════════════════════════════ */
+.decorativos {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Escudo heráldico — canto inferior direito */
+.escudo {
+    position: absolute;
+    bottom: 4vh;
+    right: 3vw;
+    width: clamp(60px, 8vw, 110px);
+    opacity: 0;
+    animation: fadeInDeco 2s ease 2.5s forwards;
+    animation-fill-mode: forwards;
+}
+
+/* Ornamentos horizontais */
+.ornamento-topo,
+.ornamento-base {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.ornamento-topo {
+    top: 4vh;
+    animation: fadeInDeco 1.5s ease 1.8s forwards;
+}
+
+.ornamento-base {
+    bottom: 4vh;
+    animation: fadeInDeco 1.5s ease 2s forwards;
+}
+
+.linha-orn {
+    display: inline-block;
+    width: clamp(30px, 8vw, 120px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+
+.diamante {
+    color: var(--ouro);
+    font-size: clamp(6px, 1vw, 10px);
+    opacity: 0.7;
+}
+
+@keyframes fadeInDeco {
+    from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 4 — Conteúdo principal
+   ══════════════════════════════════════════════════════════════════ */
+.vinheta-conteudo {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(20px, 5vw, 80px);
+    gap: clamp(12px, 2.5vh, 28px);
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────────────── */
+.eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.6rem, 1.5vw, 0.85rem);
+    letter-spacing: 0.35em;
+    color: var(--ouro);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: subirFade 1s ease 0.5s forwards;
+}
+
+.eyebrow-linha {
+    display: inline-block;
+    width: clamp(20px, 5vw, 80px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ouro-escuro), var(--ouro));
+}
+
+/* ── Título ──────────────────────────────────────────────────────── */
+.titulo-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    gap: 4px;
+}
+
+.titulo-linha {
+    display: block;
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 11vw, 8.5rem);
+    letter-spacing: 0.05em;
+    /* Gradiente dourado no texto */
+    background: linear-gradient(
+        160deg,
+        var(--ouro-escuro) 0%,
+        var(--ouro)        30%,
+        var(--ouro-claro)  50%,
+        var(--ouro)        70%,
+        var(--ouro-escuro) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Sombra luminosa dourada */
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.4))
+            drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+    opacity: 0;
+}
+
+.titulo-linha-1 {
+    animation: revelarTitulo1 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+.titulo-linha-2 {
+    animation: revelarTitulo2 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.titulo-separador {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    color: var(--ouro);
+    letter-spacing: 0.4em;
+    opacity: 0;
+    animation: subirFade 1s ease 1.5s forwards;
+    padding: 4px 0;
+}
+
+@keyframes revelarTitulo1 {
+    from { opacity: 0; transform: translateY(40px) skewY(2deg); filter: drop-shadow(0 0 0px transparent) blur(8px); }
+    to   { opacity: 1; transform: translateY(0) skewY(0deg);    filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.8)); }
+}
+
+@keyframes revelarTitulo2 {
+    from { opacity: 0; transform: translateY(-40px) skewY(-2deg); filter: drop-shadow(0 0 0px transparent) blur(8px); }
+    to   { opacity: 1; transform: translateY(0) skewY(0deg);      filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.8)); }
+}
+
+/* ── Subtítulo ───────────────────────────────────────────────────── */
+.subtitulo {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2.2vw, 1.3rem);
+    color: var(--creme-suave);
+    line-height: 1.7;
+    max-width: 540px;
+    opacity: 0;
+    animation: subirFade 1.2s ease 2s forwards;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* ── Divisor de pergaminho ───────────────────────────────────────── */
+.divisor-perg {
+    width: clamp(160px, 35vw, 300px);
+    opacity: 0;
+    animation: subirFade 1s ease 2.3s forwards;
+}
+
+/* ── Botão CTA ───────────────────────────────────────────────────── */
+.btn-explorar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: clamp(12px, 2vh, 16px) clamp(28px, 5vw, 48px);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--fundo-1);
+    background: linear-gradient(135deg, var(--ouro-escuro) 0%, var(--ouro) 40%, var(--ouro-claro) 60%, var(--ouro) 100%);
+    border-radius: 2px;
+    border: 1px solid var(--ouro-claro);
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+    animation: subirFade 1s ease 2.7s forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow:
+        0 0 0 1px var(--ouro-escuro),
+        0 4px 20px rgba(201,168,76,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* Efeito de brilho varrendo o botão no hover */
+.btn-brilho {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.45) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+    pointer-events: none;
+}
+
+.btn-explorar:hover .btn-brilho {
+    left: 130%;
+}
+
+.btn-explorar:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 0 0 1px var(--ouro-claro),
+        0 8px 35px rgba(201,168,76,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+    filter: brightness(1.1);
+}
+
+.btn-explorar:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-texto { position: relative; z-index: 1; }
+
+.btn-seta {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 1.1em;
+}
+
+.btn-explorar:hover .btn-seta {
+    transform: translateX(5px);
+}
+
+/* ── Nota de áudio ───────────────────────────────────────────────── */
+.nota-audio {
+    font-size: 0.7rem;
+    color: var(--ouro-escuro);
+    letter-spacing: 0.15em;
+    opacity: 0;
+    font-family: 'Cinzel', serif;
+    min-height: 1em;
+    transition: opacity 0.5s ease;
+}
+
+/* ── Animação de entrada genérica ────────────────────────────────── */
+@keyframes subirFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 5 — Vinheta / escurecimento de borda
+   ══════════════════════════════════════════════════════════════════ */
+.vignette-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at 50% 50%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.55) 75%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CAMADA 6 — Transição de saída (fade para preto antes do index)
+   ══════════════════════════════════════════════════════════════════ */
+.transicao-saida {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--fundo-1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.transicao-saida.ativa {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BARRA DE PROGRESSO — timer automático
+   ══════════════════════════════════════════════════════════════════ */
+#barra-progresso {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 9000;
+    background: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#barra-progresso.visivel {
+    opacity: 1;
+}
+
+#barra-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        var(--ouro-escuro) 0%,
+        var(--ouro)        50%,
+        var(--ouro-claro)  100%
+    );
+    box-shadow: 0 0 10px var(--ouro), 0 0 4px var(--ouro-claro);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVIDADE
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+    .eyebrow { gap: 8px; }
+    .ornamento-topo .linha-orn,
+    .ornamento-base .linha-orn { width: 20px; }
+    .escudo { width: 50px; }
+    .subtitulo { font-size: 0.95rem; }
+}
+
+@media (max-height: 500px) {
+    .vinheta-conteudo { gap: 8px; }
+    .subtitulo { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ACESSIBILIDADE — Sem animações
+   ══════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .titulo-linha, .eyebrow, .subtitulo, .divisor-perg,
+    .btn-explorar, .escudo, .ornamento-topo, .ornamento-base {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
