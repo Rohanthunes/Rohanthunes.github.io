@@ -131,6 +131,9 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     mix-blend-mode: screen;
+    will-change: transform, opacity;
+    transform: translateZ(0); /* força GPU layer — evita repaint a cada frame */
+    backface-visibility: hidden;
 }
 
 .nevoa-1 {
@@ -556,7 +559,7 @@ body {
         right: 3vw;
     }
 
-    .nevoa-blob { filter: blur(50px); }
+    .nevoa-blob { filter: none; mix-blend-mode: normal; opacity: 0.3; }
 }
 
 /* ── Mobile: 480px ───────────────────────────────────────────────── */
@@ -610,7 +613,7 @@ body {
         opacity: 0.4;
     }
 
-    .nevoa-blob { filter: blur(35px); }
+    .nevoa-blob { filter: none; mix-blend-mode: normal; opacity: 0.25; }
 
     #canvas-particulas { opacity: 0.6; }
 
@@ -648,7 +651,7 @@ body {
 
     .titulo-linha   { font-size: clamp(1.8rem, 8vw, 3.5rem); }
     .btn-explorar   { padding: 10px 28px; font-size: 0.78rem; }
-    .nevoa-blob     { filter: blur(30px); }
+    .nevoa-blob     { filter: none; mix-blend-mode: normal; opacity: 0.2; }
 }
 
 /* ── Landscape + mobile pequeno ─────────────────────────────────── */
