@@ -163,7 +163,7 @@ const prefersLess = window.matchMedia('(prefers-reduced-motion: reduce)').matche
     const overlay = document.getElementById('transicao-saida');
     if (!btn || !overlay) return;
 
-    const DESTINO      = btn.getAttribute('href') || 'index.html';
+    const DESTINO      = btn.getAttribute('href') || 'index2.html';
     const TEMPO_AUTO   = 13200; // ms totais
     const FADE_DURACAO = 1050;  // ms da transição de saída
 
@@ -277,4 +277,53 @@ const prefersLess = window.matchMedia('(prefers-reduced-motion: reduce)').matche
         requestAnimationFrame(animar);
     }
     animar();
+})();
+
+
+/* ─────────────────────────────────────────────────────────────────
+   7. MÁQUINA DE ESCREVER NO SUBTÍTULO
+   ─────────────────────────────────────────────────────────────────
+   Digita o subtítulo letra a letra após as animações de entrada.
+   Respeita prefers-reduced-motion: exibe o texto inteiro de uma vez.
+   ───────────────────────────────────────────────────────────────── */
+(function maquinaEscrever() {
+    const alvo   = document.getElementById('typing-text');
+    const cursor = document.querySelector('.typing-cursor');
+    if (!alvo || !cursor) return;
+
+    const TEXTO = 'Uma jornada pelos impérios, guerras e renascimentos que moldaram o mundo como o conhecemos.';
+    const ATRASO_INICIO = 3000; // aguarda animações de entrada (ms)
+    const VELOCIDADE    = 38;   // ms por caractere
+
+    // Sem animação: exibe tudo de vez
+    if (prefersLess || isLowEnd) {
+        alvo.textContent = TEXTO.replace('\n', ' ');
+        cursor.classList.add('fim');
+        return;
+    }
+
+    // Oculta o subtítulo até começar (as animações CSS já o fazem aparecer)
+    alvo.textContent = '';
+
+    setTimeout(() => {
+        let i = 0;
+        function digitarChar() {
+            if (i >= TEXTO.length) {
+                // Digitação concluída: cursor some após 1.5s
+                setTimeout(() => cursor.classList.add('fim'), 1500);
+                return;
+            }
+            const c = TEXTO[i];
+            if (c === '\n') {
+                alvo.appendChild(document.createElement('br'));
+            } else {
+                alvo.textContent += c;
+            }
+            i++;
+            // Variação sutil na velocidade para parecer mais humano
+            const delay = VELOCIDADE + (Math.random() > 0.85 ? Math.random() * 60 : 0);
+            setTimeout(digitarChar, delay);
+        }
+        digitarChar();
+    }, ATRASO_INICIO);
 })();

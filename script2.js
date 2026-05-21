@@ -282,3 +282,208 @@ btnTopo.addEventListener('click', () => {
 
 // Rodar uma vez no carregamento
 atualizarTudo();
+
+// ══════════════════════════════════════════════════════════════════
+// LINHA DO TEMPO HORIZONTAL — scroll por botões + drag + barra
+// ══════════════════════════════════════════════════════════════════
+(function timelineGlobal() {
+    const track = document.getElementById('tg-track');
+    const btnL  = document.getElementById('tg-left');
+    const btnR  = document.getElementById('tg-right');
+    const fill  = document.getElementById('tg-barra-fill');
+    if (!track) return;
+
+    const PASSO = 280;
+
+    btnL && btnL.addEventListener('click', () => track.scrollBy({ left: -PASSO, behavior: 'smooth' }));
+    btnR && btnR.addEventListener('click', () => track.scrollBy({ left:  PASSO, behavior: 'smooth' }));
+
+    // Barra de progresso
+    function atualizarBarra() {
+        if (!fill) return;
+        const max = track.scrollWidth - track.clientWidth;
+        const pct = max > 0 ? (track.scrollLeft / max) * 70 + 30 : 30;
+        fill.style.width = pct + '%';
+    }
+    track.addEventListener('scroll', atualizarBarra, { passive: true });
+    atualizarBarra();
+
+    // Drag-to-scroll
+    let arrastando = false, inicioX = 0, scrollInicio = 0, moveu = false;
+    track.addEventListener('mousedown', e => {
+        arrastando = true; moveu = false;
+        inicioX = e.pageX - track.offsetLeft;
+        scrollInicio = track.scrollLeft;
+        track.style.cursor = 'grabbing';
+    });
+    document.addEventListener('mouseup', () => {
+        arrastando = false;
+        track.style.cursor = 'grab';
+    });
+    track.addEventListener('mousemove', e => {
+        if (!arrastando) return;
+        e.preventDefault();
+        moveu = true;
+        const x = e.pageX - track.offsetLeft;
+        track.scrollLeft = scrollInicio - (x - inicioX);
+    });
+
+    // ── Tooltip via position:fixed posicionado pelo JS ─────────────
+    // Cada .tg-item tem seu próprio .tg-tooltip no HTML;
+    // ao hover, calcula posição no viewport e exibe acima ou abaixo do ponto.
+    document.querySelectorAll('.tg-item').forEach(item => {
+        const tip = item.querySelector('.tg-tooltip');
+        if (!tip) return;
+
+        item.addEventListener('mouseenter', (e) => {
+            if (moveu) return; // não abre tooltip durante drag
+            const rect = item.getBoundingClientRect();
+            const tw   = 210; // largura do tooltip (igual ao CSS)
+            const th   = tip.offsetHeight || 120;
+
+            // Posição horizontal: centralizado no item, ajustado para não sair da tela
+            let left = rect.left + rect.width / 2 - tw / 2;
+            left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+
+            // Posição vertical: acima do ponto por padrão
+            let top = rect.top - th - 14;
+            // Se sair pelo topo, abre abaixo
+            if (top < 8) top = rect.bottom + 10;
+
+            tip.style.left = left + 'px';
+            tip.style.top  = top  + 'px';
+            tip.classList.add('visivel');
+        });
+
+        item.addEventListener('mouseleave', () => {
+            tip.classList.remove('visivel');
+        });
+
+        // Reseta flag de drag no mouseenter
+        item.addEventListener('mouseenter', () => { moveu = false; });
+    });
+})();
+
+// ══════════════════════════════════════════════════════════════════
+// MAPA SVG INTERATIVO — hover tooltip + click navega
+// ══════════════════════════════════════════════════════════════════
+(function mapaInterativo() {
+    const tooltip = document.getElementById('mapa-tooltip');
+    const paises  = document.querySelectorAll('.map-pais');
+    if (!tooltip || !paises.length) return;
+
+    paises.forEach(el => {
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+
+        // Hover / focus: mostra tooltip
+        function mostrar(e) {
+            tooltip.textContent = el.getAttribute('data-nome');
+            tooltip.classList.add('visivel');
+        }
+        function mover(e) {
+            const rect = tooltip.closest('.mapa-wrapper').getBoundingClientRect();
+            const svg  = el.closest('svg').getBoundingClientRect();
+            // Posiciona relativo ao wrapper
+            const px = e.clientX - rect.left + 10;
+            const py = e.clientY - rect.top  - 36;
+            tooltip.style.left = px + 'px';
+            tooltip.style.top  = py + 'px';
+        }
+        function ocultar() { tooltip.classList.remove('visivel'); }
+
+        el.addEventListener('mouseenter', mostrar);
+        el.addEventListener('mousemove',  mover);
+        el.addEventListener('mouseleave', ocultar);
+        el.addEventListener('focus',      mostrar);
+        el.addEventListener('blur',       ocultar);
+
+        // Click / Enter → navegar para a seção
+        function navegar() {
+            const href = el.getAttribute('data-href');
+            const alvo = document.querySelector(href);
+            if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        el.addEventListener('click', navegar);
+        el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') navegar(); });
+    });
+})();
+
+// ══════════════════════════════════════════════════════════════════
+// QUIZ — responder, feedback, resultado e reiniciar
+// ══════════════════════════════════════════════════════════════════
+
+/** Chamada pelo onclick de cada botão de opção */
+function quizResponder(btn) {
+    const pergunta = btn.closest('.quiz-pergunta');
+    const bloco    = btn.closest('.quiz-bloco');
+    if (!bloco || !pergunta) return;
+
+    // Bloqueia todas as opções desta pergunta
+    pergunta.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+
+    const correto   = btn.getAttribute('data-correto') === 'true';
+    const feedback  = pergunta.querySelector('.quiz-feedback');
+
+    btn.classList.add(correto ? 'certo' : 'errado');
+
+    // Destaca a resposta certa se errou
+    if (!correto) {
+        pergunta.querySelectorAll('.quiz-opt').forEach(b => {
+            if (b.getAttribute('data-correto') === 'true') b.classList.add('certo');
+        });
+    }
+
+    feedback.textContent = correto ? '✅ Correto!' : '❌ Incorreto!';
+    feedback.style.color = correto ? '#27ae60' : '#e74c3c';
+
+    // Atualiza contadores no bloco
+    const respondidas = parseInt(bloco.dataset.respondidas) + 1;
+    const acertos     = parseInt(bloco.dataset.acertos) + (correto ? 1 : 0);
+    bloco.dataset.respondidas = respondidas;
+    bloco.dataset.acertos     = acertos;
+
+    // Resultado final quando todas foram respondidas
+    const total = parseInt(bloco.dataset.total);
+    if (respondidas >= total) {
+        const pais = bloco.dataset.pais;
+        const res  = document.getElementById('qr-' + pais);
+        const btn2 = bloco.querySelector('.quiz-reiniciar');
+        if (!res) return;
+
+        res.classList.add('show');
+        if (acertos === total) {
+            res.className = 'quiz-resultado show nota-otima';
+            res.textContent = `🏆 Excelente! ${acertos}/${total} — Você domina este tema!`;
+        } else if (acertos >= Math.ceil(total / 2)) {
+            res.className = 'quiz-resultado show nota-boa';
+            res.textContent = `👍 Bom trabalho! ${acertos}/${total} — Quase lá!`;
+        } else {
+            res.className = 'quiz-resultado show nota-ruim';
+            res.textContent = `📚 ${acertos}/${total} — Vale a pena rever o conteúdo!`;
+        }
+        if (btn2) btn2.style.display = 'block';
+    }
+}
+
+/** Reinicia um quiz específico */
+function quizReiniciar(paisId) {
+    const bloco = document.getElementById('quiz-' + paisId);
+    if (!bloco) return;
+
+    bloco.dataset.respondidas = 0;
+    bloco.dataset.acertos     = 0;
+
+    bloco.querySelectorAll('.quiz-opt').forEach(b => {
+        b.disabled = false;
+        b.classList.remove('certo', 'errado');
+    });
+    bloco.querySelectorAll('.quiz-feedback').forEach(f => {
+        f.textContent = '';
+    });
+
+    const res  = document.getElementById('qr-' + paisId);
+    const btn2 = bloco.querySelector('.quiz-reiniciar');
+    if (res)  { res.className = 'quiz-resultado'; res.textContent = ''; }
+    if (btn2) btn2.style.display = 'none';
+}

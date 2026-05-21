@@ -675,3 +675,20 @@ body {
         transform: none !important;
     }
 }
+
+/* ── Máquina de escrever ─────────────────────────────────────────── */
+.typing-cursor {
+    display: inline-block;
+    color: var(--ouro, #c9a84c);
+    font-style: normal;
+    animation: piscarCursor 0.75s step-end infinite;
+    margin-left: 1px;
+}
+
+@keyframes piscarCursor {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* Cursor some quando a digitação termina */
+.typing-cursor.fim { animation: none; opacity: 0; }

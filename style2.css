@@ -1067,3 +1067,539 @@ footer {
         transition: none;
     }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   LINHA DO TEMPO GLOBAL HORIZONTAL
+   ══════════════════════════════════════════════════════════════════ */
+.section-timeline-global { overflow: visible; }
+
+.timeline-global-intro {
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.tg-track-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tg-track {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 180px 24px 48px;
+    position: relative;
+    flex: 1;
+    cursor: grab;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--card-a, #667eea) 5%,
+            var(--card-b, #764ba2) 95%,
+            transparent 100%
+        )
+        left calc(100% - 40px) / 100% 3px no-repeat;
+}
+
+.tg-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    flex-shrink: 0;
+    padding-bottom: 28px;
+    cursor: pointer;
+}
+
+.tg-ponto {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--timeline-dot, #667eea);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--timeline-dot, #667eea),
+                0 0 10px color-mix(in srgb, var(--timeline-dot,#667eea) 40%, transparent);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 1.2s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.tg-item:hover .tg-ponto {
+    transform: scale(1.5);
+    box-shadow: 0 0 0 3px var(--timeline-dot, #667eea),
+                0 0 20px color-mix(in srgb, var(--timeline-dot,#667eea) 70%, transparent);
+}
+
+.tg-ano {
+    position: absolute;
+    bottom: 6px;
+    font-size: 0.72em;
+    font-weight: 700;
+    color: var(--h3-color, #764ba2);
+    white-space: nowrap;
+    transition: color 1.2s ease;
+}
+
+/* Tooltip — fixo no viewport, posicionado via JS */
+.tg-tooltip {
+    position: fixed;
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.85em;
+    line-height: 1.55;
+    width: 210px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18),
+                0 0 0 1px color-mix(in srgb, var(--border,#667eea) 20%, transparent);
+    border-left: 3px solid var(--timeline-dot, #667eea);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, border-color 1.2s ease;
+    z-index: 9000;
+    white-space: normal;
+    top: 0; left: 0; /* posição controlada pelo JS */
+}
+
+.tg-tooltip.visivel {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Botões de scroll */
+.tg-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--nav-active-bg, #667eea);
+    background: white;
+    color: var(--nav-active-bg, #667eea);
+    font-size: 1.4em;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 1.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tg-btn:hover {
+    background: var(--nav-active-bg, #667eea);
+    color: white;
+}
+
+/* Barra de scroll decorativa */
+.tg-barra-scroll {
+    height: 3px;
+    background: rgba(0,0,0,0.07);
+    border-radius: 99px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.tg-barra-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--card-a,#667eea), var(--card-b,#764ba2));
+    border-radius: 99px;
+    width: 30%;
+    transition: width 0.1s linear, background 1.2s ease;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MAPA SVG INTERATIVO
+   ══════════════════════════════════════════════════════════════════ */
+:root { --mar-cor: #c8dff0; }
+
+.mapa-intro {
+    color: #666;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.mapa-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.mapa-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: var(--mar-cor);
+}
+
+/* Países clicáveis */
+.map-pais {
+    fill: color-mix(in srgb, var(--card-a,#667eea) 55%, #e0e8ff);
+    stroke: white;
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+.map-pais:hover,
+.map-pais:focus {
+    fill: var(--card-a, #667eea);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--card-a,#667eea) 60%, transparent));
+    outline: none;
+}
+
+/* Países de contexto (não clicáveis) */
+.map-outro {
+    fill: #d4dff5;
+    stroke: white;
+    stroke-width: 0.8;
+    pointer-events: none;
+}
+
+/* Emoji de bandeira */
+.map-label {
+    font-size: 18px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+/* Nome por extenso abaixo da bandeira */
+.map-label-txt {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    fill: #2c3e50;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+    paint-order: stroke;
+    stroke: white;
+    stroke-width: 3px;
+}
+
+/* Tooltip do mapa */
+.mapa-tooltip {
+    position: absolute;
+    background: white;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.82em;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    border-left: 3px solid var(--timeline-dot, #667eea);
+    white-space: nowrap;
+    z-index: 10;
+    transition: border-color 1.2s ease;
+}
+
+.mapa-tooltip.visivel { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════════
+   GALERIA DE IMAGENS + LIGHTBOX
+════════════════════════════════════════════════════════════════ */
+
+.galeria-pais {
+    margin-top: 40px;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.galeria-thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.galeria-thumb:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+}
+
+.galeria-thumb img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.galeria-thumb:hover img {
+    transform: scale(1.08);
+}
+
+.galeria-legenda {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.35s ease;
+
+    z-index: 9999;
+    padding: 30px;
+}
+
+.lightbox:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox figure {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.lightbox img {
+    max-width: 92vw;
+    max-height: 88vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 60px rgba(0,0,0,0.55);
+
+    animation: zoomLightbox 0.35s ease;
+}
+
+@keyframes zoomLightbox {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox figcaption {
+    margin-top: 16px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.lightbox-fechar {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 2.5rem;
+    font-weight: bold;
+
+    transition: transform 0.2s ease;
+}
+
+.lightbox-fechar:hover {
+    transform: scale(1.15);
+}
+
+body:has(.lightbox:target) #badge-pais {
+    opacity: 0;
+    transform:
+        translateY(-25px)
+        scale(0.9);
+
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   QUIZ
+   ══════════════════════════════════════════════════════════════════ */
+.quiz-bloco {
+    margin-top: 28px;
+    padding: 22px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--card-a,#667eea) 5%, white) 0%,
+        white 100%);
+    border: 1.5px solid color-mix(in srgb, var(--border,#667eea) 20%, transparent);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transition: border-color 1.2s ease;
+}
+
+.quiz-bloco h4 { margin-bottom: 18px; }
+
+.quiz-pergunta {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.quiz-pergunta:last-of-type { border-bottom: none; }
+
+.quiz-q {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+.quiz-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border-radius: 50%;
+    background: var(--card-a, #667eea);
+    color: white;
+    font-size: 0.78em;
+    font-weight: 700;
+    transition: background 1.2s ease;
+}
+
+.quiz-opcoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.quiz-opt {
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1.5px solid color-mix(in srgb, var(--border,#667eea) 25%, transparent);
+    background: white;
+    color: #333;
+    font-size: 0.88em;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    font-family: inherit;
+    line-height: 1.4;
+}
+
+.quiz-opt:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--card-a,#667eea) 8%, white);
+    border-color: var(--border, #667eea);
+    transform: translateY(-1px);
+}
+
+.quiz-opt.certo {
+    background: #d4edda;
+    border-color: #27ae60;
+    color: #155724;
+    font-weight: 600;
+}
+
+.quiz-opt.errado {
+    background: #f8d7da;
+    border-color: #e74c3c;
+    color: #721c24;
+}
+
+.quiz-opt:disabled { cursor: default; transform: none; }
+
+.quiz-feedback {
+    margin-top: 8px;
+    font-size: 0.82em;
+    font-weight: 600;
+    min-height: 1.2em;
+    color: #555;
+}
+
+/* Resultado final */
+.quiz-resultado {
+    text-align: center;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1em;
+    display: none;
+    margin-top: 6px;
+}
+
+.quiz-resultado.show { display: block; }
+
+.quiz-resultado.nota-otima  { background: #d4edda; color: #155724; border: 1.5px solid #27ae60; }
+.quiz-resultado.nota-boa    { background: #fff3cd; color: #856404; border: 1.5px solid #f4c430; }
+.quiz-resultado.nota-ruim   { background: #f8d7da; color: #721c24; border: 1.5px solid #e74c3c; }
+
+.quiz-reiniciar {
+    display: block;
+    margin: 10px auto 0;
+    padding: 9px 24px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border, #667eea);
+    background: white;
+    color: var(--nav-active-bg, #667eea);
+    font-weight: 600;
+    font-size: 0.88em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s, border-color 1.2s ease;
+}
+.quiz-reiniciar:hover {
+    background: var(--nav-active-bg, #667eea);
+    color: white;
+}
+
+/* ── Responsividade das novas features ───────────────────────────── */
+@media (max-width: 768px) {
+    .galeria-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .quiz-opcoes  { grid-template-columns: 1fr; }
+    .tg-track     { padding: 160px 12px 44px; }
+    .tg-item      { min-width: 80px; }
+    .tg-tooltip   { width: 160px; font-size: 0.78em; }
+    .tg-btn       { width: 30px; height: 30px; font-size: 1.2em; }
+    .mapa-wrapper { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .galeria-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .tg-item      { min-width: 70px; }
+    .tg-tooltip   { width: 140px; font-size: 0.74em; }
+    .quiz-bloco   { padding: 16px 12px; }
+    .quiz-opt     { font-size: 0.82em; padding: 8px 10px; }
+}
